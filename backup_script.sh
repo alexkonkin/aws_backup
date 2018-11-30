@@ -77,6 +77,11 @@ then
     echo "Ip of the server $server_name is $server_ip"
 fi
 
+if [ -z $local_backup_path ]
+then
+    mkdir $local_backup_path
+fi
+
 echo "Copy of the files from $server_ip to the $local_backup_path is starting"
 rsync -avz -e "ssh -i $key_name -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress ec2-user@$server_ip:$server_backup_path $local_backup_path
 
