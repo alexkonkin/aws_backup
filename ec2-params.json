@@ -1,0 +1,14 @@
+[
+  {
+    "ParameterKey": "MySqlRootPassword",
+    "ParameterValue": "pa55word"
+  },
+  {
+    "ParameterKey": "MySqlAppUser",
+    "ParameterValue": "demo"
+  },
+  {
+    "ParameterKey": "MySqlAppPassword",
+    "ParameterValue": "1234Alex1234"
+  }
+]
