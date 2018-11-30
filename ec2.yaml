@@ -41,8 +41,8 @@ Resources:
            mysql -u root -h localhost --password=${MySqlRootPassword} -e "grant all on employees.* to '"${MySqlAppUser}"'@'%' identified by '"${MySqlAppPassword}"'" &&\
            time mysql -u root -h localhost --password=${MySqlRootPassword}  -t < test_employees_md5.sql &&\
            mkdir /opt/mysql_backup &&\
-           echo "*/10 * * * * root mysqldump --verbose=false --user=demo --password=1234Alex1234 employees > /opt/mysql_backup/employees-\`date '+\%Y-\%m-\%d_\%H:\%M:\%S'\`.sql" >> /etc/crontab &&\
-           echo "0 * * * * root find /opt/mysql_backup/ -mmin +60 -type f -exec rm -fv {} \;" >> /etc/crontab
+           echo "*/30 * * * * root mysqldump --verbose=false --user=demo --password=1234Alex1234 employees > /opt/mysql_backup/employees-\`date '+\%Y-\%m-\%d_\%H:\%M:\%S'\`.sql" >> /etc/crontab &&\
+           echo "5 * * * * root find /opt/mysql_backup/ -mmin +60 -type f -exec rm -fv {} \;" >> /etc/crontab
            service crond restart
 
 
