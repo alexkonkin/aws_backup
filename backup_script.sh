@@ -5,7 +5,7 @@ server_name="MySqlServer"
 bucket_name="alekomail-backup"
 key_name="./MyEc2KeyPair.pem"
 server_ip=""
-server_backup_path="/opt/mysql_backup/*"
+server_backup_path="/opt/mysql_backup/"
 local_backup_path="./store"
 
 #some initial tests that should assure that
@@ -83,7 +83,7 @@ then
 fi
 
 echo "Copy of the files from $server_ip to the $local_backup_path is starting"
-rsync -avz -e "ssh -i $key_name -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress ec2-user@$server_ip:$server_backup_path $local_backup_path
+rsync -avzh --delete --progress -e "ssh -i $key_name -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" ec2-user@$server_ip:$server_backup_path $local_backup_path
 
 echo "Copy of the backup files from $local_backup_path is starting"
 aws s3 sync --delete $local_backup_path s3://$bucket_name/ --delete
